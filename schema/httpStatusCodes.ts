@@ -1,5 +1,5 @@
 
-export const enum HttpStatusCodes {
+export enum HttpStatusCodes {
     OK = 200,
     CREATED = 201,
     NO_CONTENT = 204,
