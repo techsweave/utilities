@@ -1,0 +1,25 @@
+{
+    "name": "utilities-techsweave",
+    "version": "1.0.2",
+    "description": "utilities for emporioLambda backend",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc"
+    },
+    "author": "techSWEave",
+    "license": "MIT",
+    "dependencies": {
+        "@aws/dynamodb-expressions": "^0.7.3",
+        "@middy/core": "^2.2.0",
+        "@middy/http-json-body-parser": "^2.2.0",
+        "aws-lambda": "^1.0.6",
+        "aws-sdk": "^2.907.0",
+        "json-schema-to-ts": "^1.6.4"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.76",
+        "@types/node": "^15.3.0"
+    },
+    "prepublish": "tsc"
+}
