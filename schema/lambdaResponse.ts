@@ -1,7 +1,8 @@
 import { APIGatewayProxyResult } from 'aws-lambda';
 import { AWSError } from 'aws-sdk';
 import { errorNameToHttpStatusCode } from '../libs/functions/errorNameToHttpStatusCode';
-import { HttpStatusCodes } from './httpStatusCodes';
+import { StatusCodes } from 'http-status-codes';
+
 
 export class Response<T> {
 
@@ -10,7 +11,7 @@ export class Response<T> {
     private _error?: AWSError;
     private _lastEvaluatedKey?: Partial<T>;
 
-    static fromMultipleData<U>(data: U[], statusCode: HttpStatusCodes, lastEvaluatedKey: Partial<U>): Response<U> {
+    static fromMultipleData<U>(data: U[], statusCode: StatusCodes, lastEvaluatedKey: Partial<U>): Response<U> {
         if (statusCode < 200 || statusCode >= 300) {
             throw new Error('If a response has data, the status code must be between 200 and 299');
         }
@@ -21,7 +22,7 @@ export class Response<T> {
         return res;
     }
 
-    static fromData<U>(data: U, statusCode: HttpStatusCodes): Response<U> {
+    static fromData<U>(data: U, statusCode: StatusCodes): Response<U> {
         if (statusCode < 200 || statusCode >= 300) {
             throw new Error('If a response has data, the status code must be between 200 and 299');
         }
