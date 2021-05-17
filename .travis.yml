@@ -8,7 +8,6 @@ install:
   - npm install
 
 script:
-  - tsc
   - npm publish
 
 branches:
