@@ -1,9 +1,9 @@
 import { APIGatewayProxyResult } from 'aws-lambda';
 import { AWSError } from 'aws-sdk';
-import {default as errorNameToHttpStatusCode } from '@functions/errorNameToHttpStatusCode';
-import HttpStatusCodes from './httpStatusCodes';
+import { errorNameToHttpStatusCode } from '../libs/functions/errorNameToHttpStatusCode';
+import { HttpStatusCodes } from './httpStatusCodes';
 
-export default class Response<T> {
+export class Response<T> {
 
     private _statusCode: number;
     private _data?: T[] = []; // This is an array, in order to use scan and get whit the same response class

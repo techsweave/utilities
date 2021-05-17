@@ -1,6 +1,7 @@
 {
     "extends": "./tsconfig.paths.json",
     "compilerOptions": {
+        "declaration": true,
         "lib": [
             "es2017",
             "es7",
@@ -8,7 +9,7 @@
             "dom"
         ],
         "moduleResolution": "Node",
-        "module": "esnext",
+        "module": "commonJS",
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "removeComments": true,
@@ -16,7 +17,9 @@
         "target": "ES6",
         "outDir": "dist",
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "rootDir": "./"
     },
     "include": [
         "libs/*.ts",
@@ -25,11 +28,5 @@
     "exclude": [
         "node_modules/**/*",
         "dist"
-    ],
-    "ts-node": {
-        "require": [
-            "tsconfig-paths/register"
-        ],
-    },
-    "declaration": true
+    ]
 }
