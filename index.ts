@@ -1,4 +1,5 @@
 export { default as HttpStatusCodes } from "./schema/httpStatusCodes";
+//let HttpStatusCodes = require('./schema/httpStatusCodes');
 export { default as Response } from "./schema/lambdaResponse";
 export { middyfy } from "./libs/lambda"
 export { handlerPath } from "./libs/handlerResolver"

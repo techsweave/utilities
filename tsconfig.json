@@ -2,14 +2,18 @@
     "extends": "./tsconfig.paths.json",
     "compilerOptions": {
         "lib": [
-            "ESNext"
+            "es2017",
+            "es7",
+            "es6",
+            "dom"
         ],
-        "moduleResolution": "node",
+        "moduleResolution": "Node",
+        "module": "esnext",
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "removeComments": true,
         "sourceMap": true,
-        "target": "ES2020",
+        "target": "ES6",
         "outDir": "dist",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true
