@@ -1,0 +1,20 @@
+language: node_js
+
+node_js:
+  - 14
+
+install:
+  - npm install -g typescript
+  - npm install
+
+before_deploy:
+  - rm -rf dist && tsc
+
+deploy:
+  provider: npm
+  email: techsweave@gmail.com
+  api_key: $NPM_TOKEN
+
+branches:
+  only:
+    - main
