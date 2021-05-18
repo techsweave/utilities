@@ -7,10 +7,14 @@ install:
   - npm install -g typescript
   - npm install
 
-script:
-  - npm publish
+before_deploy:
+  - rm -rf dist && tsc
+
+deploy:
+  provider: npm
+  email: techsweave@gmail.com
+  api_key: $NPM_TOKEN
 
 branches:
   only:
-    - develop
     - main
