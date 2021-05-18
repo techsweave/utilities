@@ -7,6 +7,9 @@ install:
   - npm install -g typescript
   - npm install
 
+before_deploy:
+  - rm -rf dist && tsc
+
 deploy:
   provider: npm
   email: techsweave@gmail.com
