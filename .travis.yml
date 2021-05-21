@@ -7,7 +7,7 @@ install:
   - npm install -g typescript
   - npm install
 
-before_deploy:
+script:
   - npm run build
 
 deploy:

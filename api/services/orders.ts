@@ -10,11 +10,11 @@ import Stripe from 'stripe';
  */
 export class Orders extends Service {
 
-    private readonly _finalUrl: string;
+    //TODO: private readonly _finalUrl: string;
 
     constructor(id: string, region: string, stage: string, accessToken?: string) {
         super(id, region, stage, accessToken);
-        this._finalUrl = 'orders';
+        //TODO: this._finalUrl = 'orders';
     }
 
     /**
