@@ -8,7 +8,7 @@ install:
   - npm install
 
 before_deploy:
-  - rm -rf dist && tsc
+  - npm run build
 
 deploy:
   provider: npm
