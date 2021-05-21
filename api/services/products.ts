@@ -2,12 +2,10 @@ import { Service } from './service'
 import { ConditionExpression } from '@aws/dynamodb-expressions';
 import { HTTPMethod } from 'http-method-enum'
 import { MultipleDataBody } from '../models/lambdaBody'
-import { Product } from '../models/database/Products';
-
-// export namespace API {
+import { Product } from '../models/database/products';
 
 /**
- * @summary Generic service, avery single service class implements this
+ * @summary Products service
  */
 export class Products extends Service {
 
@@ -15,24 +13,24 @@ export class Products extends Service {
 
     constructor(id: string, region: string, stage: string, accessToken?: string) {
         super(id, region, stage, accessToken);
-        this._finalUrl = 'products'
+        this._finalUrl = 'products';
     }
 
     /**
-       * @async
-       *
-       * @summary Request to the endpoint of scan product
-       *
-       * @param  {number} limit Max number of products in scan
-       * @param  {string} startKey Value of start element key
-       * @param  {number} pageSize Size of the page
-       * @param  {string} indexName Name of the index
-       * @param  {string} filter Scan filter, see more at https://www.npmjs.com/package/@aws/dynamodb-expressions
-       * @return {Promise<MultipleDataBody<Product>>}
-       * Return an array of products, count, and the last evaluated key
-       *
-       * @throws Message of the failed request
-       */
+     * @async
+     *
+     * @summary Request to the endpoint of scan product
+     *
+     * @param  {number} limit Max number of products in scan
+     * @param  {string} startKey Value of start element key
+     * @param  {number} pageSize Size of the page
+     * @param  {string} indexName Name of the index
+     * @param  {string} filter Scan filter, see more at https://www.npmjs.com/package/@aws/dynamodb-expressions
+     * @return {Promise<MultipleDataBody<Product>>}
+     * Return an array of products, count, and the last evaluated key
+     *
+     * @throws Message of the failed request
+     */
     public async scanAsync(
         limit: number,
         startKey?: string,
@@ -43,7 +41,7 @@ export class Products extends Service {
         Promise<
             MultipleDataBody<
                 Product>> {
-        this._finalUrl = this._finalUrl.concat('/filter');
+        const finalUrl = this._finalUrl.concat('/filter');
         const method = HTTPMethod.POST;
 
         const body = {
@@ -56,79 +54,77 @@ export class Products extends Service {
             filter,
         };
 
-        return Promise.resolve(await this.requestAsync(this._finalUrl, method, body));
+        return Promise.resolve(await super.requestAsync(finalUrl, method, body));
     }
 
     /**
-       * @async
-       *
-       * @summary Request to the endpoint of get product
-       *
-       * @param  {string} id Id of the product to fetch
-       * @return {Promise<Product>} Return the fetched product
-       *
-       * @throws Message of the failed request
+     * @async
+     *
+     * @summary Request to the endpoint of get product
+     *
+     * @param  {string} id Id of the product to fetch
+     * @return {Promise<Product>} Return the fetched product
+     *
+     * @throws Message of the failed request
        */
     public async getAsync(id: string): Promise<Product> {
-        this._finalUrl = this._finalUrl.concat(`${id}`);
+        const finalUrl = this._finalUrl.concat(`${id}`);
 
         const method = HTTPMethod.GET;
 
-        return Promise.resolve((await this.requestAsync(this._finalUrl, method)).data);
+        return Promise.resolve((await super.requestAsync(finalUrl, method)).data);
     }
 
     /**
-       * @async
-       *
-       * @summary Request to the endpoint of create product
-       *
-       * @param  {Product} product Product to create
-       * @return {Promise<Product>} Return the created product
-       *
-       * @throws Message of the failed request
-       */
+     * @async
+     *
+     * @summary Request to the endpoint of create product
+     *
+     * @param  {Product} product Product to create
+     * @return {Promise<Product>} Return the created product
+     *
+     * @throws Message of the failed request
+     */
     public async createAsync(product: Product): Promise<Product> {
         const method = HTTPMethod.POST;
 
-        return Promise.resolve((await this.requestAsync('', method, product)).data);
+        return Promise.resolve((await super.requestAsync(this._finalUrl, method, product)).data);
     }
 
     /**
-       * @async
-       *
-       * @summary Request to the endpoint of update product
-       *
-       * @param  {Product} product Product to update
-       * @return {Promise<Product>} Return the updated product
-       *
-       * @throws Message of the failed request
-       */
+     * @async
+     *
+     * @summary Request to the endpoint of update product
+     *
+     * @param  {Product} product Product to update
+     * @return {Promise<Product>} Return the updated product
+     *
+     * @throws Message of the failed request
+     */
     public async updateAsync(product: Product): Promise<Product> {
-        this._finalUrl = this._finalUrl.concat(`${product.id}`);
+        const finalUrl = this._finalUrl.concat(`${product.id}`);
 
         const method = HTTPMethod.PUT;
 
-        return Promise.resolve((await this.requestAsync(this._finalUrl, method, product)).data);
+        return Promise.resolve((await super.requestAsync(finalUrl, method, product)).data);
     }
 
     /**
-       * @async
-       *
-       * @summary Request to the endpoint of delete product
-       *
-       * @param  {string} id Id of the product to delete
-       * @return {Promise<product>} Return the deleted product
-       *
-       * @throws Message of the failed request
-       */
+     * @async
+     *
+     * @summary Request to the endpoint of delete product
+     *
+     * @param  {string} id Id of the product to delete
+     * @return {Promise<product>} Return the deleted product
+     *
+     * @throws Message of the failed request
+     */
     public async deleteAsync(id: string): Promise<Product> {
-        this._finalUrl = this._finalUrl.concat(`${id}`);
+        const finalUrl = this._finalUrl.concat(`${id}`);
 
         const method = HTTPMethod.DELETE;
 
-        return Promise.resolve((await this.requestAsync(this._finalUrl, method)).data);
+        return Promise.resolve((await super.requestAsync(finalUrl, method)).data);
     }
 
 }
-
-// }

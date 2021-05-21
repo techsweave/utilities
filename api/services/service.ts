@@ -6,7 +6,7 @@ import { HTTPMethod } from 'http-method-enum'
 /**
  * @abstract
  * 
- * @summary Generic service, avery single service class implements this
+ * @summary Generic service, every single service class implements this
  */
 export abstract class Service {
 

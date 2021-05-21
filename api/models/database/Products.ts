@@ -4,6 +4,9 @@ interface SpecValue {
     value: any;
 }
 
+/**
+ * @summary Rappresent a record in products table
+ */
 export interface Product {
     id: string;
     version: Date;
