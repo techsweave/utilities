@@ -9,6 +9,9 @@ export const errorNameToHttpStatusCode = async (error: AWSError): Promise<number
         case 'ItemNotFoundException':
             code = StatusCodes.NOT_FOUND;
             break;
+        case 'UserNotAllowed':
+            code = StatusCodes.FORBIDDEN;
+            break;
 
         default:
             code = StatusCodes.INTERNAL_SERVER_ERROR;
