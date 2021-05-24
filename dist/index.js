@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthenticatedUser = exports.Models = exports.Services = exports.objectToConditionExpression = exports.errorNameToHttpStatusCode = exports.handlerPath = exports.middyfy = exports.Response = void 0;
+exports.Image = exports.AuthenticatedUser = exports.Models = exports.Services = exports.objectToConditionExpression = exports.errorNameToHttpStatusCode = exports.handlerPath = exports.middyfy = exports.Response = void 0;
 var lambdaResponse_1 = require("./schema/lambdaResponse");
 Object.defineProperty(exports, "Response", { enumerable: true, get: function () { return lambdaResponse_1.Response; } });
 var lambda_1 = require("./libs/lambda");
@@ -34,4 +34,6 @@ exports.Services = __importStar(require("./api/services/index"));
 exports.Models = __importStar(require("./api/models/index"));
 var authenticatedUser_1 = require("./auth/authenticatedUser");
 Object.defineProperty(exports, "AuthenticatedUser", { enumerable: true, get: function () { return authenticatedUser_1.AuthenticatedUser; } });
+var image_1 = require("image/image");
+Object.defineProperty(exports, "Image", { enumerable: true, get: function () { return image_1.Image; } });
 //# sourceMappingURL=index.js.map
