@@ -6,3 +6,4 @@ export { errorNameToHttpStatusCode } from "./libs/functions/errorNameToHttpStatu
 export { objectToConditionExpression } from "./libs/functions/objectToConditionExpression"
 export * as Services from './api/services/index'
 export * as Models from './api/models/index'
+export { AuthenticatedUser } from './auth/authenticatedUser'
