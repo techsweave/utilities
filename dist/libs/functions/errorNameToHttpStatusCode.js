@@ -17,6 +17,9 @@ const errorNameToHttpStatusCode = (error) => __awaiter(void 0, void 0, void 0, f
         case 'ItemNotFoundException':
             code = http_status_codes_1.StatusCodes.NOT_FOUND;
             break;
+        case 'UserNotAllowed':
+            code = http_status_codes_1.StatusCodes.FORBIDDEN;
+            break;
         default:
             code = http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR;
             break;

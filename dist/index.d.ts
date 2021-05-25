@@ -7,4 +7,4 @@ export { objectToConditionExpression } from "./libs/functions/objectToConditionE
 export * as Services from './api/services/index';
 export * as Models from './api/models/index';
 export { AuthenticatedUser } from './auth/authenticatedUser';
-export { Image } from 'image/image';
+export { Image } from './image/image';
