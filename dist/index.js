@@ -34,6 +34,6 @@ exports.Services = __importStar(require("./api/services/index"));
 exports.Models = __importStar(require("./api/models/index"));
 var authenticatedUser_1 = require("./auth/authenticatedUser");
 Object.defineProperty(exports, "AuthenticatedUser", { enumerable: true, get: function () { return authenticatedUser_1.AuthenticatedUser; } });
-var image_1 = require("image/image");
+var image_1 = require("./image/image");
 Object.defineProperty(exports, "Image", { enumerable: true, get: function () { return image_1.Image; } });
 //# sourceMappingURL=index.js.map
