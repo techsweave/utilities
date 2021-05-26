@@ -13,8 +13,8 @@ exports.Orders = void 0;
 const service_1 = require("./service");
 const http_method_enum_1 = require("http-method-enum");
 class Orders extends service_1.Service {
-    constructor(id, region, stage, accessToken) {
-        super(id, region, stage, accessToken);
+    constructor(id, region, stage, accessToken, idToken) {
+        super(id, region, stage, accessToken, idToken);
     }
     goToCheckOutAsync(successUrl, cancelUrl) {
         const _super = Object.create(null, {

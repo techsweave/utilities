@@ -11,8 +11,8 @@ export class Products extends Service {
 
     private _finalUrl: string;
 
-    constructor(id: string, region: string, stage: string, accessToken?: string) {
-        super(id, region, stage, accessToken);
+    constructor(id: string, region: string, stage: string, accessToken?: string, idToken?: string) {
+        super(id, region, stage, accessToken, idToken);
         this._finalUrl = 'products';
     }
 
