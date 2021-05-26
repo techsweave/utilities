@@ -13,10 +13,12 @@ export abstract class Service {
     private _baseUrl: string;
 
     private readonly _accessToken?: string;
+    private readonly _idToken?: string;
 
-    constructor(id: string, region: string, stage: string, accessToken?: string) {
+    constructor(id: string, region: string, stage: string, accessToken?: string, idToken?: string) {
         this._baseUrl = `https://${id}.execute-api.${region}.amazonaws.com/${stage}}`;
         this._accessToken = accessToken;
+        this._idToken = idToken;
     }
 
     /**
@@ -37,7 +39,9 @@ export abstract class Service {
         const headers: HeadersInit = new Headers();
         headers.set('Content-Type', 'application/json');
         if (this._accessToken)
-            headers.set('Authorization', this._accessToken);
+            headers.set('AccessToken', this._accessToken);
+        if (this._idToken)
+            headers.set('Authorization', this._idToken);
 
         const httpResponse = await fetch(`${this._baseUrl}/${finalURL}`, {
             method: method.toString(),

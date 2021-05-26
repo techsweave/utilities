@@ -11,16 +11,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Service = void 0;
 class Service {
-    constructor(id, region, stage, accessToken) {
+    constructor(id, region, stage, accessToken, idToken) {
         this._baseUrl = `https://${id}.execute-api.${region}.amazonaws.com/${stage}}`;
         this._accessToken = accessToken;
+        this._idToken = idToken;
     }
     requestAsync(finalURL, method, body) {
         return __awaiter(this, void 0, void 0, function* () {
             const headers = new Headers();
             headers.set('Content-Type', 'application/json');
             if (this._accessToken)
-                headers.set('Authorization', this._accessToken);
+                headers.set('AccessToken', this._accessToken);
+            if (this._idToken)
+                headers.set('Authorization', this._idToken);
             const httpResponse = yield fetch(`${this._baseUrl}/${finalURL}`, {
                 method: method.toString(),
                 headers: headers,
