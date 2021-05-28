@@ -52,13 +52,6 @@ class Response {
     toAPIGatewayProxyResult() {
         var _a, _b, _c, _d, _e;
         return __awaiter(this, void 0, void 0, function* () {
-            if (this._error != null) {
-                this._data = undefined;
-                this._statusCode = (_a = this._error) === null || _a === void 0 ? void 0 : _a.statusCode;
-                if (this._statusCode == null) {
-                    this._statusCode = yield errorNameToHttpStatusCode_1.errorNameToHttpStatusCode(this._error);
-                }
-            }
             const response = {
                 statusCode: this._statusCode,
                 headers: {
@@ -67,10 +60,22 @@ class Response {
                 },
                 body: null
             };
-            if (((_b = this._data) === null || _b === void 0 ? void 0 : _b.length) == 1) {
+            if (this._error != null) {
+                this._data = undefined;
+                this._statusCode = (_a = this._error) === null || _a === void 0 ? void 0 : _a.statusCode;
+                if (this._statusCode == null) {
+                    this._statusCode = yield errorNameToHttpStatusCode_1.errorNameToHttpStatusCode(this._error);
+                }
+                response.body = JSON.stringify({
+                    error: {
+                        name: (_b = this._error) === null || _b === void 0 ? void 0 : _b.name,
+                        message: (_c = this._error) === null || _c === void 0 ? void 0 : _c.message
+                    }
+                });
+            }
+            else if (((_d = this._data) === null || _d === void 0 ? void 0 : _d.length) == 1) {
                 response.body = JSON.stringify({
                     data: this._data[0],
-                    error: (_c = this._error) === null || _c === void 0 ? void 0 : _c.message,
                     count: 1,
                     lastEvaluatedKey: this._lastEvaluatedKey
                 });
@@ -78,7 +83,6 @@ class Response {
             else {
                 response.body = JSON.stringify({
                     data: this._data,
-                    error: (_d = this._error) === null || _d === void 0 ? void 0 : _d.message,
                     count: (_e = this._data) === null || _e === void 0 ? void 0 : _e.length,
                     lastEvaluatedKey: this._lastEvaluatedKey
                 });
