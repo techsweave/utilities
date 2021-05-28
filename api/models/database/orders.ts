@@ -2,7 +2,7 @@ import { Product } from './products'
 
 export interface OrderedProduct {
     quantity: number;
-    productId: Partial<Product>;
+    productId: string;
     price: number;
 }
 

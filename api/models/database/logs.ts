@@ -7,5 +7,5 @@ export interface Log {
     userId: string;
     operation: string;
     table: string;
-    recordId?: string | Partial<any>; // string or Partial<...>
+    recordId?: string; // string or Partial<...>
 }
