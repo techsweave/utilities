@@ -1,8 +1,7 @@
-import { Product } from './products';
-export interface Cart {
+export interface ICart {
     id: string;
     userId: string;
-    productId: Partial<Product>;
+    productId: string;
     quantity: number;
     isChanged: boolean;
 }

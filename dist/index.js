@@ -19,9 +19,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Image = exports.AuthenticatedUser = exports.Models = exports.Services = exports.objectToConditionExpression = exports.errorNameToHttpStatusCode = exports.handlerPath = exports.middyfy = exports.Response = void 0;
+exports.Image = exports.AuthenticatedUser = exports.Models = exports.Services = exports.objectToConditionExpression = exports.errorNameToHttpStatusCode = exports.handlerPath = exports.middyfy = exports.fakeContext = exports.Response = void 0;
 var lambdaResponse_1 = require("./schema/lambdaResponse");
 Object.defineProperty(exports, "Response", { enumerable: true, get: function () { return lambdaResponse_1.Response; } });
+var fakeContext_1 = require("./schema/fakeContext");
+Object.defineProperty(exports, "fakeContext", { enumerable: true, get: function () { return fakeContext_1.fakeContext; } });
 var lambda_1 = require("./libs/lambda");
 Object.defineProperty(exports, "middyfy", { enumerable: true, get: function () { return lambda_1.middyfy; } });
 var handlerResolver_1 = require("./libs/handlerResolver");

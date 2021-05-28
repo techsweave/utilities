@@ -1,12 +1,12 @@
-export interface SpecTemplate {
+export interface ISpecTemplate {
     fieldName: string;
     unitMisure: string;
 }
-export interface Category {
+export interface ICategory {
     id: string;
     name: string;
     macroCategorieId?: string;
     description?: string;
     texes?: number;
-    customSpecTemplates?: SpecTemplate[];
+    customSpecTemplates?: ISpecTemplate[];
 }

@@ -1,7 +1,7 @@
 import { Service } from './service'
 import { HTTPMethod } from 'http-method-enum'
-import { MultipleDataBody } from '../models/lambdaBody'
-import { Cart } from '../models/database/carts';
+import { IMultipleDataBody } from '../models/lambdaBody'
+import { ICart } from '../models/database/carts';
 
 /**
  * @summary Cart service
@@ -20,15 +20,15 @@ export class Carts extends Service {
      *
      * @summary Request to the endpoint of get cart
      *
-     * @return {Promise<MultipleDataBody<Cart>>}
+     * @return {Promise<IMultipleDataBody<ICart>>}
      * Return an array of carts, count, and the last evaluated key
      *
      * @throws Message of the failed request
      */
     public async getAsync():
         Promise<
-            MultipleDataBody<
-                Cart>> {
+            IMultipleDataBody<
+                ICart>> {
         const method = HTTPMethod.GET;
 
         return Promise.resolve(await super.requestAsync(this._finalUrl, method));
