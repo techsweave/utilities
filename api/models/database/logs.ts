@@ -2,10 +2,10 @@
 /**
  * @summary Rappresent a record in logs table
  */
-export interface Log {
+export interface ILog {
     id: string;
     userId: string;
     operation: string;
     table: string;
-    recordId?: string | Partial<any>; // string or Partial<...>
+    recordId?: string; // string or Partial<...>
 }

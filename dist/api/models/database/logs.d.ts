@@ -1,7 +1,7 @@
-export interface Log {
+export interface ILog {
     id: string;
     userId: string;
     operation: string;
     table: string;
-    recordId?: string | Partial<any>;
+    recordId?: string;
 }

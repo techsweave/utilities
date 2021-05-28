@@ -1,4 +1,6 @@
 export { Response } from "./schema/lambdaResponse";
+export { fakeContext } from "./schema/fakeContext";
+export { IFakeEvent } from "./schema/fakeEvent";
 export { middyfy } from "./libs/lambda"
 export { handlerPath } from "./libs/handlerResolver"
 export { ValidatedEventAPIGatewayProxyEvent } from "./libs/apiGateway"

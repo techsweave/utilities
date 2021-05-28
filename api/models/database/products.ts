@@ -1,4 +1,4 @@
-export interface SpecValue {
+export interface ISpecValue {
     fieldName: string;
     unitMisure: string;
     value: any;
@@ -7,7 +7,7 @@ export interface SpecValue {
 /**
  * @summary Rappresent a record in products table
  */
-export interface Product {
+export interface IProduct {
     id: string;
     SKU: string;
     title: string;
@@ -20,5 +20,5 @@ export interface Product {
     categorieId?: string;
     notes?: string;
     tags?: string[];
-    customSpecs?: SpecValue[];
+    customSpecs?: ISpecValue[];
 }
