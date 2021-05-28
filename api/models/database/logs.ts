@@ -2,7 +2,7 @@
 /**
  * @summary Rappresent a record in logs table
  */
-export interface Log {
+export interface ILog {
     id: string;
     userId: string;
     operation: string;

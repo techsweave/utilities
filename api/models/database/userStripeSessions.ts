@@ -1,7 +1,7 @@
 /**
  * @summary Rappresent a record in usersStripeSessions table
  */
-export interface UserStripeSession {
+export interface IUserStripeSession {
     id: string;
     userId: string;
     stripeSessionId: string;

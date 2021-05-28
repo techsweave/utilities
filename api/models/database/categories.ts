@@ -1,5 +1,5 @@
 
-export interface SpecTemplate {
+export interface ISpecTemplate {
     fieldName: string;
     unitMisure: string;
 }
@@ -7,11 +7,11 @@ export interface SpecTemplate {
 /**
  * @summary Rappresent a record in categories table
  */
-export interface Category {
+export interface ICategory {
     id: string;
     name: string;
     macroCategorieId?: string;
     description?: string;
     texes?: number;
-    customSpecTemplates?: SpecTemplate[];
+    customSpecTemplates?: ISpecTemplate[];
 }

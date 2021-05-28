@@ -1,7 +1,7 @@
 /**
  * @summary Rappresent a record in carts table
  */
-export interface Cart {
+export interface ICart {
     id: string;
     userId: string;
     productId: string;

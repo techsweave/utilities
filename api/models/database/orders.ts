@@ -1,6 +1,4 @@
-import { Product } from './products'
-
-export interface OrderedProduct {
+export interface IOrderedProduct {
     quantity: number;
     productId: string;
     price: number;
@@ -9,10 +7,10 @@ export interface OrderedProduct {
 /**
  * @summary Rappresent a record in orders table
  */
-export interface Order {
+export interface IOrder {
     id: string;
     userId: string;
     date: Date;
     status: string;
-    products?: OrderedProduct[];
+    products?: IOrderedProduct[];
 }
