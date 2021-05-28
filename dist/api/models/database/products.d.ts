@@ -5,7 +5,7 @@ export interface SpecValue {
 }
 export interface Product {
     id: string;
-    version: Date;
+    SKU: string;
     title: string;
     description?: string;
     price?: number;
