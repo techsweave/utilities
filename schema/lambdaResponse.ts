@@ -54,16 +54,6 @@ export class Response<T> {
      * in order to return the correct type in a Lamda function header
     */
     async toAPIGatewayProxyResult(): Promise<APIGatewayProxyResult> {
-        if (this._error != null) {
-            this._data = undefined;
-
-            // resolve the http status code
-            this._statusCode = this._error?.statusCode;
-            if (this._statusCode == null) {
-                this._statusCode = await errorNameToHttpStatusCode(this._error);
-            }
-        }
-
         const response: APIGatewayProxyResult = {
             statusCode: this._statusCode,
             headers: {
@@ -73,11 +63,25 @@ export class Response<T> {
             body: null
         };
 
+        if (this._error != null) {
+            this._data = undefined;
 
-        if (this._data?.length == 1) {
+            // resolve the http status code
+            this._statusCode = this._error?.statusCode;
+            if (this._statusCode == null) {
+                this._statusCode = await errorNameToHttpStatusCode(this._error);
+            }
+
+            response.body = JSON.stringify({
+                error: {
+                    name: this._error?.name,
+                    message: this._error?.message
+                }
+            });
+        }
+        else if (this._data?.length == 1) {
             response.body = JSON.stringify({
                 data: this._data[0],
-                error: this._error?.message,
                 count: 1,
                 lastEvaluatedKey: this._lastEvaluatedKey
             });
@@ -85,7 +89,6 @@ export class Response<T> {
         else {
             response.body = JSON.stringify({
                 data: this._data,
-                error: this._error?.message,
                 count: this._data?.length,
                 lastEvaluatedKey: this._lastEvaluatedKey
             });
