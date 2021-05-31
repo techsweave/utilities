@@ -8,6 +8,8 @@ install:
   - npm install
 
 script:
+  - echo node_modules > .gitignore
+  - npx eslint src
   - npm run build
 
 deploy:

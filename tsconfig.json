@@ -23,7 +23,7 @@
     },
     "include": [
         "libs/*.ts",
-        "schema/*.ts",
+        "src/schema/*.ts",
         "index.ts"
     ],
     "exclude": [
