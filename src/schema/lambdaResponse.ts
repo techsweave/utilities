@@ -72,6 +72,7 @@ export class Response<T> {
                 this._statusCode = await errorNameToHttpStatusCode(this._error);
             }
 
+            response.statusCode = this._statusCode;
             response.body = JSON.stringify({
                 error: {
                     name: this._error?.name,
