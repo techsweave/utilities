@@ -9,4 +9,5 @@ export { objectToConditionExpression } from './src/libs/functions/objectToCondit
 export * as Services from './src/api/services/index';
 export * as Models from './src/api/models/index';
 export { AuthenticatedUser } from './src/auth/authenticatedUser';
+export { TestUser } from './src/auth/testUser';
 export { Image } from './src/image/image';
