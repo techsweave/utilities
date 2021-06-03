@@ -4,6 +4,7 @@ export { IFakeEvent } from './src/schema/fakeEvent';
 export { middyfy } from './src/libs/lambda';
 export { handlerPath } from './src/libs/handlerResolver';
 export { ValidatedEventAPIGatewayProxyEvent } from './src/libs/apiGateway';
+export { ValidatedEventSQSEvent } from './src/libs/sqs';
 export { errorNameToHttpStatusCode } from './src/libs/functions/errorNameToHttpStatusCode';
 export { objectToConditionExpression } from './src/libs/functions/objectToConditionExpression';
 export * as Services from './src/api/services/index';
