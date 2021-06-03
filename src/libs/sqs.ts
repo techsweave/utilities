@@ -1,12 +1,7 @@
-import type { SQSEvent, Handler } from 'aws-lambda';
+import type { SQSRecord, Handler } from 'aws-lambda';
 import type { FromSchema } from 'json-schema-to-ts';
 
-type ValidatedSQSEvent<S> = Omit<SQSEvent, 'body'> & { body: FromSchema<S> }
-export type ValidatedEventSQSEvent<S> = Handler<ValidatedSQSEvent<S>, void>
+type ValidatedSQSRecord<S> = Omit<SQSRecord, 'body'> & { body: FromSchema<S> }
+type ValidatedSQSEvent<S> = { Records: ValidatedSQSRecord<S>[] }
 
-// export const formatJSONResponse = (response: Record<string, unknown>) => {
-//     return {
-//         statusCode: 200,
-//         body: JSON.stringify(response)
-//     }
-// }
+export type ValidatedEventSQSEvent<S> = Handler<ValidatedSQSEvent<S>, void>
