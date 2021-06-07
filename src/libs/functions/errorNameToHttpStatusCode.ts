@@ -9,7 +9,7 @@ export const errorNameToHttpStatusCode = async (error: AWSError): Promise<number
     case 'ItemNotFoundException':
         code = StatusCodes.NOT_FOUND;
         break;
-    case 'UserNotAllowed':
+    case 'UserNotAllowed' || 'OrderAlreadyCompleted':
         code = StatusCodes.FORBIDDEN;
         break;
     case 'DuplicateSKU':
