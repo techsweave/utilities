@@ -68,7 +68,7 @@ export class Products extends Service {
      * @throws Message of the failed request
        */
     public async getAsync(id: string): Promise<IProduct> {
-        const finalUrl = this._finalUrl.concat(`${id}`);
+        const finalUrl = this._finalUrl.concat(`/${id}`);
 
         const method = HTTPMethod.GET;
 

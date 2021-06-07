@@ -16,7 +16,7 @@ export abstract class Service {
     private readonly _idToken?: string;
 
     constructor(id: string, region: string, stage: string, accessToken?: string, idToken?: string) {
-        this._baseUrl = `https://${id}.execute-api.${region}.amazonaws.com/${stage}}`;
+        this._baseUrl = `https://${id}.execute-api.${region}.amazonaws.com/${stage}`;
         this._accessToken = accessToken;
         this._idToken = idToken;
     }
