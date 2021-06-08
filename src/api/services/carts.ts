@@ -1,5 +1,4 @@
 import { Service } from './service';
-import { HTTPMethod } from 'http-method-enum';
 import { IMultipleDataBody } from '../models/lambdaBody';
 import { ICart } from '../models/database/carts';
 
@@ -29,7 +28,7 @@ export class Carts extends Service {
         Promise<
             IMultipleDataBody<
                 ICart>> {
-        const method = HTTPMethod.GET;
+        const method = 'GET';
 
         return Promise.resolve(await super.requestAsync(this._finalUrl, method));
     }

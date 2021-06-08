@@ -1,6 +1,5 @@
 import { Service } from './service';
 import { ConditionExpression } from '@aws/dynamodb-expressions';
-import { HTTPMethod } from 'http-method-enum';
 import { IMultipleDataBody } from '../models/lambdaBody';
 import { IProduct } from '../models/database/products';
 
@@ -42,7 +41,7 @@ export class Products extends Service {
             IMultipleDataBody<
                 IProduct>> {
         const finalUrl = this._finalUrl.concat('/filter');
-        const method = HTTPMethod.POST;
+        const method = 'POST';
 
         const body = {
             limit,
@@ -70,7 +69,7 @@ export class Products extends Service {
     public async getAsync(id: string): Promise<IProduct> {
         const finalUrl = this._finalUrl.concat(`/${id}`);
 
-        const method = HTTPMethod.GET;
+        const method = 'GET';
 
         return Promise.resolve((await super.requestAsync(finalUrl, method)).data);
     }
@@ -86,7 +85,7 @@ export class Products extends Service {
      * @throws Message of the failed request
      */
     public async createAsync(product: IProduct): Promise<IProduct> {
-        const method = HTTPMethod.POST;
+        const method = 'POST';
 
         return Promise.resolve((await super.requestAsync(this._finalUrl, method, product)).data);
     }
@@ -104,7 +103,7 @@ export class Products extends Service {
     public async updateAsync(product: IProduct): Promise<IProduct> {
         const finalUrl = this._finalUrl.concat(`${product.id}`);
 
-        const method = HTTPMethod.PUT;
+        const method = 'PUT';
 
         return Promise.resolve((await super.requestAsync(finalUrl, method, product)).data);
     }
@@ -122,7 +121,7 @@ export class Products extends Service {
     public async deleteAsync(id: string): Promise<IProduct> {
         const finalUrl = this._finalUrl.concat(`${id}`);
 
-        const method = HTTPMethod.DELETE;
+        const method = 'DELETE';
 
         return Promise.resolve((await super.requestAsync(finalUrl, method)).data);
     }
