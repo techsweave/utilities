@@ -10,9 +10,12 @@ export const errorNameToHttpStatusCode = async (error: AWSError): Promise<number
         code = StatusCodes.NOT_FOUND;
         break;
     case 'UserNotAllowed':
+    case 'OrderAlreadyCompleted':
         code = StatusCodes.FORBIDDEN;
         break;
-
+    case 'DuplicateSKU':
+        code = StatusCodes.CONFLICT;
+        break;
     default:
         code = StatusCodes.INTERNAL_SERVER_ERROR;
         break;
