@@ -1,7 +1,5 @@
-import { HTTPMethod } from 'http-method-enum';
-
-
-// export namespace API {
+import { Method } from 'axios';
+import axios from 'axios';
 
 /**
  * @abstract
@@ -33,31 +31,32 @@ export abstract class Service {
      *
      * @throws Message of the failed request
      */
-    protected async requestAsync(finalURL: string, method: HTTPMethod, body?: any):
-        Promise<any> {
+    protected async requestAsync(finalURL: string, method: Method, body?: any): Promise<any> {
 
-        const headers: HeadersInit = new Headers();
-        headers.set('Content-Type', 'application/json');
-        if (this._accessToken)
-            headers.set('AccessToken', this._accessToken);
-        if (this._idToken)
-            headers.set('Authorization', this._idToken);
+        const headers = {
+            'Content-Type': 'application/json',
+            'AccessToken': this._accessToken ? this._accessToken : null,
+            'Authorization': this._idToken ? this._idToken : null
+        };
 
-        const httpResponse = await fetch(`${this._baseUrl}/${finalURL}`, {
-            method: method.toString(),
-            headers: headers,
-            body: body ? JSON.stringify(body) : null,
-        });
+        let axiosResponse;
+        try {
+            axiosResponse = await axios.request({
+                url: `${this._baseUrl}/${finalURL}`,
+                headers: headers,
+                method: method,
+                data: body ? body : null
+            });
 
-        const jsonResponse = await httpResponse.json();
-
-        if (jsonResponse.error) {
-            throw new Error(jsonResponse.error);
+        } catch (err) {
+            if (err.response) {
+                throw err.response.data;
+            } else if (err.request) {
+                throw err.request;
+            } else {
+                throw err;
+            }
         }
-
-        return Promise.resolve(jsonResponse);
+        return Promise.resolve(axiosResponse.data);
     }
-
 }
-
-// }

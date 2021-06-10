@@ -1,7 +1,4 @@
 import { Service } from './service';
-import { HTTPMethod } from 'http-method-enum';
-// import { MultipleDataBody } from '../models/lambdaBody'
-// import { Order } from '../models/database/orders';
 import Stripe from 'stripe';
 
 
@@ -33,7 +30,7 @@ export class Orders extends Service {
             Stripe.Response<
                 Stripe.Checkout.Session>> {
         const finalUrl = 'checkout';
-        const method = HTTPMethod.POST;
+        const method = 'POST';
 
         const body = {
             successUrl,
