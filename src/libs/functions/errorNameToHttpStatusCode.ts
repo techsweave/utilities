@@ -16,6 +16,9 @@ export const errorNameToHttpStatusCode = async (error: AWSError): Promise<number
     case 'DuplicateSKU':
         code = StatusCodes.CONFLICT;
         break;
+    case 'NotAValidStatus':
+        code = StatusCodes.BAD_REQUEST;
+        break;
     default:
         code = StatusCodes.INTERNAL_SERVER_ERROR;
         break;
