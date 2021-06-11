@@ -16,7 +16,7 @@ export class Image {
      * 
      * @returns {Promise<Image>} new Image
      */
-    async createImageFromPath(path: string, linkedItemId: string): Promise<Image> {
+    static async createImageFromPath(path: string, linkedItemId: string): Promise<Image> {
         return new Image(path, linkedItemId);
     }
 
@@ -27,7 +27,7 @@ export class Image {
      * 
      * @returns {Promise<Image>} new Image
      */
-    async createImageFromS3Url(url: string): Promise<Image> {
+    static async createImageFromS3Url(url: string): Promise<Image> {
 
         const pathElements = url.split('/');
         const path = pathElements[pathElements.length - 1];
