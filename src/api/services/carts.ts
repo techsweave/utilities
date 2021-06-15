@@ -49,7 +49,7 @@ export class Carts extends Service {
      * @throws Message of the failed request
      */
     public async removeProduct(cartId: string): Promise<ICart> {
-        const method = 'POST';
+        const method = 'DELETE';
         const finalUrl = this._finalUrl.concat(`/${cartId}`);
 
         return super.requestAsync(finalUrl, method);
