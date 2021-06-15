@@ -15,3 +15,5 @@ export interface ICategory {
     taxes?: number;
     customSpecTemplates?: ISpecTemplate[];
 }
+
+export type INewCategory = Omit<ICategory, 'id'>

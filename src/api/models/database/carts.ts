@@ -8,3 +8,5 @@ export interface ICart {
     quantity: number;
     isChanged: boolean;
 }
+
+export type INewCart = Omit<ICart, 'id'>

@@ -1,7 +1,5 @@
-export { IProduct, ISpecValue } from './products';
-export { ICart } from './carts';
+export { IProduct, ISpecValue, INewProduct } from './products';
+export { ICart, INewCart } from './carts';
 export { IOrder, IOrderedProduct } from './orders';
-export { ICategory, ISpecTemplate } from './categories';
-export { ITag } from './tags';
-export { ILog } from './logs';
-export { IUserStripeSession } from './userStripeSessions';
+export { ICategory, ISpecTemplate, INewCategory } from './categories';
+export { ITag, INewTag } from './tags';

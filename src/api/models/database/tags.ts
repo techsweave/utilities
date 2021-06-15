@@ -7,3 +7,5 @@ export interface ITag {
     name: string;
     description: string;
 }
+
+export type INewTag = Omit<ITag, 'id'>

@@ -22,3 +22,5 @@ export interface IProduct {
     tags?: string[];
     customSpecs?: ISpecValue[];
 }
+
+export type INewProduct = Omit<Omit<IProduct, 'id'>, 'SKU'>
