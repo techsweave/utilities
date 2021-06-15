@@ -1,7 +1,7 @@
 import { Service } from './service';
 import { ConditionExpression } from '@aws/dynamodb-expressions';
 import { IMultipleDataBody } from '../models/lambdaBody';
-import { IProduct } from '../models/database/products';
+import { INewProduct, IProduct } from '../models/database/products';
 
 /**
  * @summary Products service
@@ -36,10 +36,7 @@ export class Products extends Service {
         pageSize?: number,
         indexName?: string,
         filter?: ConditionExpression,
-    ):
-        Promise<
-            IMultipleDataBody<
-                IProduct>> {
+    ): Promise<IMultipleDataBody<IProduct>> {
         const finalUrl = this._finalUrl.concat('/filter');
         const method = 'POST';
 
@@ -68,10 +65,9 @@ export class Products extends Service {
        */
     public async getAsync(id: string): Promise<IProduct> {
         const finalUrl = this._finalUrl.concat(`/${id}`);
-
         const method = 'GET';
 
-        return Promise.resolve((await super.requestAsync(finalUrl, method)).data);
+        return super.requestAsync(finalUrl, method);
     }
 
     /**
@@ -79,15 +75,15 @@ export class Products extends Service {
      *
      * @summary Request to the endpoint of create product
      *
-     * @param  {Product} product Product to create
+     * @param  {INewProduct} product Product to create
      * @return {Promise<IProduct>} Return the created product
      *
      * @throws Message of the failed request
      */
-    public async createAsync(product: Omit<IProduct, 'id'>): Promise<IProduct> {
+    public async createAsync(product: INewProduct): Promise<IProduct> {
         const method = 'POST';
 
-        return Promise.resolve((await super.requestAsync(this._finalUrl, method, product)).data);
+        return super.requestAsync(this._finalUrl, method, product);
     }
 
     /**
@@ -102,10 +98,9 @@ export class Products extends Service {
      */
     public async updateAsync(product: IProduct): Promise<IProduct> {
         const finalUrl = this._finalUrl.concat(`${product.id}`);
-
         const method = 'PUT';
 
-        return Promise.resolve((await super.requestAsync(finalUrl, method, product)).data);
+        return super.requestAsync(finalUrl, method, product);
     }
 
     /**
@@ -120,10 +115,9 @@ export class Products extends Service {
      */
     public async deleteAsync(id: string): Promise<IProduct> {
         const finalUrl = this._finalUrl.concat(`${id}`);
-
         const method = 'DELETE';
 
-        return Promise.resolve((await super.requestAsync(finalUrl, method)).data);
+        return super.requestAsync(finalUrl, method);
     }
 
 }

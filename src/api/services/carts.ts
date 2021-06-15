@@ -50,7 +50,7 @@ export class Carts extends Service {
      */
     public async removeProductAsync(cartId: string): Promise<ICart> {
         const method = 'DELETE';
-        const finalUrl = this._finalUrl.concat(`/${cartId}`);
+        const finalUrl = this._finalUrl.concat(`${cartId}`);
 
         return super.requestAsync(finalUrl, method);
     }
@@ -68,7 +68,7 @@ export class Carts extends Service {
      */
     public async changeQuantityAsync(cartId: string, quantity: number): Promise<ICart> {
         const method = 'PUT';
-        const finalUrl = this._finalUrl.concat(`/${cartId}`);
+        const finalUrl = this._finalUrl.concat(`${cartId}`);
         const body: Partial<ICart> = {
             quantity: quantity
         };

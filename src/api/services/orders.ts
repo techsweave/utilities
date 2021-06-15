@@ -27,7 +27,7 @@ export class Orders extends Service {
      */
     public async deleteAsync(orderId: string): Promise<IOrder> {
         const method = 'DELETE';
-        const finalUrl = this._finalUrl.concat(`/${orderId}`);
+        const finalUrl = this._finalUrl.concat(`${orderId}`);
 
         return super.requestAsync(finalUrl, method);
     }
@@ -44,7 +44,7 @@ export class Orders extends Service {
      */
     public async getAsync(orderId: string): Promise<IOrder> {
         const method = 'GET';
-        const finalUrl = this._finalUrl.concat(`/${orderId}`);
+        const finalUrl = this._finalUrl.concat(`${orderId}`);
 
         return super.requestAsync(finalUrl, method);
     }
@@ -62,7 +62,7 @@ export class Orders extends Service {
      */
     public async markAsCompletedAsync(orderId: string, isFailed: boolean): Promise<IOrder> {
         const method = 'PUT';
-        const finalUrl = this._finalUrl.concat(`/${orderId}`);
+        const finalUrl = this._finalUrl.concat(`${orderId}`);
         const body: Partial<IOrder> = {
             status: isFailed ? 'FAIL' : 'SUCCESS'
         };
@@ -93,7 +93,7 @@ export class Orders extends Service {
         filter?: ConditionExpression,
     ): Promise<IMultipleDataBody<IOrder>> {
         const method = 'POST';
-        const finalUrl = this._finalUrl.concat('/filter');
+        const finalUrl = this._finalUrl.concat('filter');
 
         const body = {
             limit,
