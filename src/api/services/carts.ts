@@ -28,7 +28,7 @@ export class Carts extends Service {
      *
      * @throws Message of the failed request
      */
-    public async addProduct(productId: string, quantity: number): Promise<ICart> {
+    public async addProductAsync(productId: string, quantity: number): Promise<ICart> {
         const method = 'POST';
         const body: Partial<ICart> = {
             productId: productId,
@@ -48,7 +48,7 @@ export class Carts extends Service {
      *
      * @throws Message of the failed request
      */
-    public async removeProduct(cartId: string): Promise<ICart> {
+    public async removeProductAsync(cartId: string): Promise<ICart> {
         const method = 'DELETE';
         const finalUrl = this._finalUrl.concat(`/${cartId}`);
 
@@ -66,7 +66,7 @@ export class Carts extends Service {
      *
      * @throws Message of the failed request
      */
-    public async changeQuantity(cartId: string, quantity: number): Promise<ICart> {
+    public async changeQuantityAsync(cartId: string, quantity: number): Promise<ICart> {
         const method = 'PUT';
         const finalUrl = this._finalUrl.concat(`/${cartId}`);
         const body: Partial<ICart> = {
@@ -87,7 +87,7 @@ export class Carts extends Service {
      *
      * @throws Message of the failed request
      */
-    public async goToCheckout(successUrl: string, cancelUrl: string): Promise<StripeResponse> {
+    public async goToCheckoutAsync(successUrl: string, cancelUrl: string): Promise<StripeResponse> {
         const method = 'POST';
         const finalUrl = this._finalUrl.concat('checkout');
         const body = {
