@@ -84,7 +84,7 @@ export class Products extends Service {
      *
      * @throws Message of the failed request
      */
-    public async createAsync(product: IProduct): Promise<IProduct> {
+    public async createAsync(product: Omit<IProduct, 'id'>): Promise<IProduct> {
         const method = 'POST';
 
         return Promise.resolve((await super.requestAsync(this._finalUrl, method, product)).data);
