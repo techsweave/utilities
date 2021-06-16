@@ -29,7 +29,7 @@ export class Tags extends Service implements ITags {
      */
     public async getAsync(id: string): Promise<ITag> {
         const method = HTTPMethod.GET;
-        const finalUrl = this._finalUrl.concat(`${id}`);
+        const finalUrl = this._finalUrl.concat(`/${id}`);
 
         return Promise.resolve((await super.requestAsync(finalUrl, method)).data);
     }
