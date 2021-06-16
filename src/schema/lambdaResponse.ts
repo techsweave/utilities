@@ -11,7 +11,7 @@ export class Response<T> {
     private _error?: AWSError;
     private _lastEvaluatedKey?: Partial<T>;
 
-    static fromMultipleData<U>(data: U[], statusCode: StatusCodes, lastEvaluatedKey: Partial<U>): Response<U> {
+    public static async fromMultipleData<U>(data: U[], statusCode: StatusCodes, lastEvaluatedKey: Partial<U>): Promise<Response<U>> {
         if (statusCode < 200 || statusCode >= 300) {
             throw new Error('If a response has data, the status code must be between 200 and 299');
         }
@@ -19,30 +19,30 @@ export class Response<T> {
         res._data = data;
         res._statusCode = statusCode;
         res._lastEvaluatedKey = lastEvaluatedKey;
-        return res;
+        return Promise.resolve(res);
     }
 
-    static fromData<U>(data: U, statusCode: StatusCodes): Response<U> {
+    public static async fromData<U>(data: U, statusCode: StatusCodes): Promise<Response<U>> {
         if (statusCode < 200 || statusCode >= 300) {
             throw new Error('If a response has data, the status code must be between 200 and 299');
         }
         const res = new Response<U>();
         res._data[0] = data;
         res._statusCode = statusCode;
-        return res;
+        return Promise.resolve(res);
     }
 
-    static fromError<U>(error: AWSError): Response<U> {
+    public static async fromError<U>(error: AWSError): Promise<Response<U>> {
         const res = new Response<U>();
         res._error = error;
-        return res;
+        return Promise.resolve(res);
     }
 
-    hasData(): boolean {
-        return this._data?.length != 0;
+    public async hasData(): Promise<boolean> {
+        return Promise.resolve(this._data?.length != 0);
     }
 
-    addPage(data: T[], lastEvaluatedKey: Partial<T>): void {
+    public async addPage(data: T[], lastEvaluatedKey: Partial<T>): Promise<void> {
         if (this.hasData()) {
             this._data = this._data.concat(data);
             this._lastEvaluatedKey = lastEvaluatedKey;
@@ -53,7 +53,7 @@ export class Response<T> {
      * This function is intended to convert a Object of Response<T> to an APIGatewayProxyResult
      * in order to return the correct type in a Lamda function header
     */
-    async toAPIGatewayProxyResult(): Promise<APIGatewayProxyResult> {
+    public async toAPIGatewayProxyResult(): Promise<APIGatewayProxyResult> {
         const response: APIGatewayProxyResult = {
             statusCode: this._statusCode,
             headers: {
