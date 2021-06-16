@@ -57,6 +57,10 @@ export abstract class Service {
                 throw err;
             }
         }
+
+        if (axiosResponse.data.count == 1)
+            return Promise.resolve(axiosResponse.data.data);
+
         return Promise.resolve(axiosResponse.data);
     }
 }
