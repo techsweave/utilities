@@ -2,13 +2,14 @@ import { Service } from './service';
 import { IMultipleDataBody } from '../models/lambdaBody';
 import { ICart } from '../models/database/carts';
 import Stripe from 'stripe';
+import { ICarts } from '../models/services/carts';
 
 type StripeResponse = Stripe.Response<Stripe.Checkout.Session>;
 
 /**
  * @summary Cart service
  */
-export class Carts extends Service {
+export class Carts extends Service implements ICarts {
 
     private readonly _finalUrl: string;
 
@@ -50,7 +51,7 @@ export class Carts extends Service {
      */
     public async removeProductAsync(cartId: string): Promise<ICart> {
         const method = 'DELETE';
-        const finalUrl = this._finalUrl.concat(`${cartId}`);
+        const finalUrl = this._finalUrl.concat(`/${cartId}`);
 
         return super.requestAsync(finalUrl, method);
     }
@@ -68,7 +69,7 @@ export class Carts extends Service {
      */
     public async changeQuantityAsync(cartId: string, quantity: number): Promise<ICart> {
         const method = 'PUT';
-        const finalUrl = this._finalUrl.concat(`${cartId}`);
+        const finalUrl = this._finalUrl.concat(`/${cartId}`);
         const body: Partial<ICart> = {
             quantity: quantity
         };
@@ -89,7 +90,7 @@ export class Carts extends Service {
      */
     public async goToCheckoutAsync(successUrl: string, cancelUrl: string): Promise<StripeResponse> {
         const method = 'POST';
-        const finalUrl = this._finalUrl.concat('checkout');
+        const finalUrl = 'checkout';
         const body = {
             successUrl: successUrl,
             cancelUrl: cancelUrl

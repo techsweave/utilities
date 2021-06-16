@@ -2,11 +2,12 @@ import { Service } from './service';
 import { ConditionExpression } from '@aws/dynamodb-expressions';
 import { IMultipleDataBody } from '../models/lambdaBody';
 import { INewProduct, IProduct } from '../models/database/products';
+import { IProducts } from '../models/services';
 
 /**
  * @summary Products service
  */
-export class Products extends Service {
+export class Products extends Service implements IProducts {
 
     private _finalUrl: string;
 
@@ -97,7 +98,7 @@ export class Products extends Service {
      * @throws Message of the failed request
      */
     public async updateAsync(product: IProduct): Promise<IProduct> {
-        const finalUrl = this._finalUrl.concat(`${product.id}`);
+        const finalUrl = this._finalUrl.concat(`/${product.id}`);
         const method = 'PUT';
 
         return super.requestAsync(finalUrl, method, product);
@@ -114,7 +115,7 @@ export class Products extends Service {
      * @throws Message of the failed request
      */
     public async deleteAsync(id: string): Promise<IProduct> {
-        const finalUrl = this._finalUrl.concat(`${id}`);
+        const finalUrl = this._finalUrl.concat(`/${id}`);
         const method = 'DELETE';
 
         return super.requestAsync(finalUrl, method);

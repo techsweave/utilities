@@ -1,13 +1,14 @@
 import { Service } from './service';
 import { HTTPMethod } from 'http-method-enum';
 import { IMultipleDataBody } from '../models/lambdaBody';
-import { ITag } from '../models/database/tags';
+import { ITag, INewTag } from '../models/database/tags';
+import { ITags } from '../models/services';
 
 
 /**
  * @summary Tags service
  */
-export class Tags extends Service {
+export class Tags extends Service implements ITags {
 
     private readonly _finalUrl: string;
 
@@ -55,6 +56,57 @@ export class Tags extends Service {
 
         return Promise.resolve(await super.requestAsync(finalUrl, method, body));
     }
+
+    /**
+     * @async
+     *
+     * @summary Request to the endpoint of create tag
+     *
+     * @param  {INewTag} tag tag to create
+     * @return {Promise<ITag>} Return the created tag
+     *
+     * @throws Message of the failed request
+     */
+    public async createAsync(tag: INewTag): Promise<ITag> {
+        const method = 'POST';
+
+        return super.requestAsync(this._finalUrl, method, tag);
+    }
+
+    /**
+     * @async
+     *
+     * @summary Request to the endpoint of update tag
+     *
+     * @param  {tag} tag tag to update
+     * @return {Promise<ITag>} Return the updated tag
+     *
+     * @throws Message of the failed request
+     */
+    public async updateAsync(tag: ITag): Promise<ITag> {
+        const finalUrl = this._finalUrl.concat(`/${tag.id}`);
+        const method = 'PUT';
+
+        return super.requestAsync(finalUrl, method, tag);
+    }
+
+    /**
+     * @async
+     *
+     * @summary Request to the endpoint of delete tag
+     *
+     * @param  {string} id Id of the tag to delete
+     * @return {Promise<ITag>} Return the deleted tag
+     *
+     * @throws Message of the failed request
+     */
+    public async deleteAsync(id: string): Promise<ITag> {
+        const finalUrl = this._finalUrl.concat(`/${id}`);
+        const method = 'DELETE';
+
+        return super.requestAsync(finalUrl, method);
+    }
+
 
 }
 
