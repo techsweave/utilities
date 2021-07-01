@@ -26,8 +26,7 @@
         "json-schema-to-ts": "^1.6.4",
         "node-fetch": "^2.6.1",
         "stripe": "^8.149.0",
-        "typescript": "^4.3.2",
-        "utilities-techsweave": "^1.1.13"
+        "typescript": "^4.3.2"
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.76",

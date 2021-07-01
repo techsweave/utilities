@@ -6,6 +6,11 @@ export class AuthenticatedUser {
     private _provider: AWS.CognitoIdentityServiceProvider;
     private _userId: string;
     private _email: Email;
+    private _phoneNumber: string;
+    private _name: string;
+    private _familyName: string;
+    private _birthDate: string;
+    private _address: string;
 
     /**
      * @async
@@ -25,7 +30,11 @@ export class AuthenticatedUser {
             }).promise());
 
         res._userId = user.Username;
-        res._email = user.UserAttributes['email'];
+        res._email = user.UserAttributes.find(element => element.Name == 'email').Value;
+        res._familyName = user.UserAttributes.find(element => element.Name == 'family_name').Value;
+        res._name = user.UserAttributes.find(element => element.Name == 'name').Value;
+        res._phoneNumber = user.UserAttributes.find(element => element.Name == 'phone_number').Value;
+        res._birthDate = user.UserAttributes.find(element => element.Name == 'birthdate').Value;
 
         return Promise.resolve(res);
     }
@@ -56,6 +65,59 @@ export class AuthenticatedUser {
      */
     public async getEmail(): Promise<string> {
         return Promise.resolve(this._email);
+    }
+
+    /**
+     * @async
+     *
+     * @summary Get the user email
+     *
+     * @return {Promise<string>} Cognito User Email
+     */
+    public async getName(): Promise<string> {
+        return Promise.resolve(this._name);
+    }
+
+    /**
+     * @async
+     *
+     * @summary Get the user email
+     *
+     * @return {Promise<string>} Cognito User Email
+     */
+    public async getFamilyName(): Promise<string> {
+        return Promise.resolve(this._familyName);
+    }
+
+    /**
+     * @async
+     *
+     * @summary Get the user email
+     *
+     * @return {Promise<string>} Cognito User Email
+     */
+    public async getPhoneNumber(): Promise<string> {
+        return Promise.resolve(this._phoneNumber);
+    }
+    /**
+     * @async
+     *
+     * @summary Get the user email
+     *
+     * @return {Promise<string>} Cognito User Email
+     */
+    public async getBirthdate(): Promise<string> {
+        return Promise.resolve(this._birthDate);
+    }
+    /**
+    * @async
+    *
+    * @summary Get the user email
+    * 
+    * @return {Promise<string>} Cognito User Email
+    */
+    public async getAddress(): Promise<string> {
+        return Promise.resolve(this._address);
     }
 
     /**
