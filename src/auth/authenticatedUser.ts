@@ -71,9 +71,9 @@ export class AuthenticatedUser {
     /**
      * @async
      *
-     * @summary Get the user email
+     * @summary Get the user name
      *
-     * @return {Promise<string>} Cognito User Email
+     * @return {Promise<string>} Cognito User name
      */
     public async getName(): Promise<string> {
         return Promise.resolve(this._name);
@@ -82,9 +82,9 @@ export class AuthenticatedUser {
     /**
      * @async
      *
-     * @summary Get the user email
+     * @summary Get the user family name
      *
-     * @return {Promise<string>} Cognito User Email
+     * @return {Promise<string>} Cognito User family name
      */
     public async getFamilyName(): Promise<string> {
         return Promise.resolve(this._familyName);
@@ -93,9 +93,9 @@ export class AuthenticatedUser {
     /**
      * @async
      *
-     * @summary Get the user email
+     * @summary Get the user phone number
      *
-     * @return {Promise<string>} Cognito User Email
+     * @return {Promise<string>} Cognito User phone number
      */
     public async getPhoneNumber(): Promise<string> {
         return Promise.resolve(this._phoneNumber);
@@ -103,9 +103,9 @@ export class AuthenticatedUser {
     /**
      * @async
      *
-     * @summary Get the user email
+     * @summary Get the user birthdate
      *
-     * @return {Promise<string>} Cognito User Email
+     * @return {Promise<string>} Cognito User birthdate
      */
     public async getBirthdate(): Promise<string> {
         return Promise.resolve(this._birthDate);
@@ -113,9 +113,9 @@ export class AuthenticatedUser {
     /**
     * @async
     *
-    * @summary Get the user email
+    * @summary Get the user address
     * 
-    * @return {Promise<string>} Cognito User Email
+    * @return {Promise<string>} Cognito User address
     */
     public async getAddress(): Promise<string> {
         return Promise.resolve(this._address);
@@ -124,12 +124,12 @@ export class AuthenticatedUser {
     /**
      * @async
      *
-     * @summary Check if the athenticated user is a vendor
+     * @summary Check if the authenticated user is a vendor
      *
      * @param  {string} userPoolId Id of user pool
      * @return {Promise<boolean>} True id the user is a vendor, otherwise false
      *
-     * @throws Message of the failed request, if there's no groups associtaed whit the Cognito user
+     * @throws Message of the failed request, if there's no groups associated whit the Cognito user
      */
     public async isVendor(userPoolId: string): Promise<boolean> {
         const groupList = await this._provider.adminListGroupsForUser({
