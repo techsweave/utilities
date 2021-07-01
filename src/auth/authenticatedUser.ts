@@ -35,6 +35,7 @@ export class AuthenticatedUser {
         res._name = user.UserAttributes.find(element => element.Name == 'name').Value;
         res._phoneNumber = user.UserAttributes.find(element => element.Name == 'phone_number').Value;
         res._birthDate = user.UserAttributes.find(element => element.Name == 'birthdate').Value;
+        res._address = user.UserAttributes.find(element => element.Name == 'address').Value;
 
         return Promise.resolve(res);
     }
