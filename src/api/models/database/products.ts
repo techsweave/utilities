@@ -12,7 +12,7 @@ export interface IProduct {
     SKU: string;
     title: string;
     description?: string;
-    price?: number;
+    price: number;
     discount?: number;
     availabilityQta?: number;
     imageURL?: string;
