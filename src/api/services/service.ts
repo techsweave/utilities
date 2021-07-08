@@ -35,7 +35,7 @@ export abstract class Service {
 
         const headers = {
             'Content-Type': 'application/json',
-            'AccessToken': this._accessToken ? this._accessToken : null,
+            'accesstoken': this._accessToken ? this._accessToken : null,
             'Authorization': this._idToken ? this._idToken : null,
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
