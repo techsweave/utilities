@@ -78,7 +78,7 @@ export class AuthenticatedUser {
      * @param value The value to apply to the attribute
      * @param userPoolId Congito user pool id
      */
-    private async setAttributes(name: string, value: string, userPoolId: string): Promise<void> {
+    private setAttributes(name: string, value: string, userPoolId: string) {
         this._provider.adminUpdateUserAttributes({
             UserAttributes: [
                 {
@@ -110,7 +110,7 @@ export class AuthenticatedUser {
      * @param userPoolId Congito user pool id
      */
     public async setName(value: string, userPoolId: string): Promise<void> {
-        this.setAttributes('name', value, userPoolId);
+        return Promise.resolve(this.setAttributes('name', value, userPoolId));
     }
 
     /**
@@ -132,7 +132,7 @@ export class AuthenticatedUser {
      * @param userPoolId Congito user pool id
      */
     public async setFamilyName(value: string, userPoolId: string): Promise<void> {
-        this.setAttributes('family_name', value, userPoolId);
+        return Promise.resolve(this.setAttributes('family_name', value, userPoolId));
     }
 
     /**
@@ -154,7 +154,7 @@ export class AuthenticatedUser {
          * @param userPoolId Congito user pool id
          */
     public async setPhoneNumber(value: string, userPoolId: string): Promise<void> {
-        this.setAttributes('phone_number', value, userPoolId);
+        return Promise.resolve(this.setAttributes('phone_number', value, userPoolId));
     }
 
     /**
@@ -176,7 +176,7 @@ export class AuthenticatedUser {
          * @param userPoolId Congito user pool id
          */
     public async setBirthdate(value: string, userPoolId: string): Promise<void> {
-        this.setAttributes('birthdate', value, userPoolId);
+        return Promise.resolve(this.setAttributes('birthdate', value, userPoolId));
     }
 
     /**
@@ -198,7 +198,7 @@ export class AuthenticatedUser {
          * @param userPoolId Congito user pool id
          */
     public async setAddress(value: string, userPoolId: string): Promise<void> {
-        this.setAttributes('address', value, userPoolId);
+        return Promise.resolve(this.setAttributes('address', value, userPoolId));
     }
 
     /**
