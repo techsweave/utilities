@@ -74,11 +74,14 @@ export class AuthenticatedUser {
      * 
      * @summary Private method for setting attributes
      * 
-     * @param name The attribute name to change
-     * @param value The value to apply to the attribute
-     * @param userPoolId Congito user pool id
+     * @param token The accessToken of the user
+     * @param name The value of name attribute to change
+     * @param familyName The value of familyName attribute to change
+     * @param phoneNumber The value of phoneNumber attribute to change
+     * @param birthdate The value of birthdate attribute to change
+     * @param address The value of address attribute to change
      */
-    public async setAttributes(token: string, name: string, familyName: string, phoneNumber: string, birthdate: string, address: string) {
+    public async setAttributes(token: string, name: string, familyName: string, phoneNumber: string, birthdate: string, address: string): Promise<void> {
         await this._provider.updateUserAttributes({
             AccessToken: token,
             UserAttributes: [
