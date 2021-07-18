@@ -56,7 +56,7 @@ export class Image {
      * @return {Promise<string>} the image s3 key
      */
     async getKey(): Promise<string> {
-        return `${this._linkedItemId}.${this.getExtension()}`;
+        return `${this._linkedItemId}.${await this.getExtension()}`;
     }
 
     /**
@@ -66,8 +66,7 @@ export class Image {
      *
      * @return {Promise<string>} the image link, stored in s3 service
      */
-    async getBucketLink(): Promise<string> {
-        return `https://${process.env.BUCKET_NAME}.s3.${process.env.REGION}.amazonaws.com/${this.getKey()}`;
+    async getBucketLink(bucketName: string, region: string): Promise<string> {
+        return `https://${bucketName}.s3.${region}.amazonaws.com/${await this.getKey()}`;
     }
-
 }
