@@ -78,7 +78,7 @@ export class AuthenticatedUser {
      * @param value The value to apply to the attribute
      * @param userPoolId Congito user pool id
      */
-    private async setAttributes(token: string, name: string, familyName: string, phoneNumber: string, birthdate: string, address: string) {
+    public async setAttributes(token: string, name: string, familyName: string, phoneNumber: string, birthdate: string, address: string) {
         await this._provider.updateUserAttributes({
             AccessToken: token,
             UserAttributes: [
