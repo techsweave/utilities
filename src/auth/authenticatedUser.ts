@@ -78,17 +78,32 @@ export class AuthenticatedUser {
      * @param value The value to apply to the attribute
      * @param userPoolId Congito user pool id
      */
-    private setAttributes(name: string, value: string, userPoolId: string) {
-        this._provider.adminUpdateUserAttributes({
+    private async setAttributes(token: string, name: string, familyName: string, phoneNumber: string, birthdate: string, address: string) {
+        await this._provider.updateUserAttributes({
+            AccessToken: token,
             UserAttributes: [
                 {
-                    Name: name,
-                    Value: value
+                    Name: 'name',
+                    Value: name === '' ? name : this._name
+                },
+                {
+                    Name: 'family_name',
+                    Value: familyName === '' ? familyName : this._familyName
+                },
+                {
+                    Name: 'phone_number',
+                    Value: phoneNumber === '' ? phoneNumber : this._phoneNumber
+                },
+                {
+                    Name: 'birthdate',
+                    Value: birthdate === '' ? birthdate : this._birthDate
+                },
+                {
+                    Name: 'address',
+                    Value: address === '' ? address : this._address
                 }
             ],
-            UserPoolId: userPoolId,
-            Username: this._userId
-        });
+        }).promise();
     }
 
     /**
@@ -102,16 +117,6 @@ export class AuthenticatedUser {
         return Promise.resolve(this._name);
     }
 
-    /**
-     * 
-     * @summary Method for setting user's name
-     *
-     * @param value The value to apply to the attribute
-     * @param userPoolId Congito user pool id
-     */
-    public async setName(value: string, userPoolId: string): Promise<void> {
-        return Promise.resolve(this.setAttributes('name', value, userPoolId));
-    }
 
     /**
      * @async
@@ -122,17 +127,6 @@ export class AuthenticatedUser {
      */
     public async getFamilyName(): Promise<string> {
         return Promise.resolve(this._familyName);
-    }
-
-    /**
-     * 
-     * @summary Method for setting user's family name
-     *
-     * @param value The value to apply to the attribute
-     * @param userPoolId Congito user pool id
-     */
-    public async setFamilyName(value: string, userPoolId: string): Promise<void> {
-        return Promise.resolve(this.setAttributes('family_name', value, userPoolId));
     }
 
     /**
@@ -147,17 +141,6 @@ export class AuthenticatedUser {
     }
 
     /**
-         * 
-         * @summary Method for setting user's telephone number
-         *
-         * @param value The value to apply to the attribute
-         * @param userPoolId Congito user pool id
-         */
-    public async setPhoneNumber(value: string, userPoolId: string): Promise<void> {
-        return Promise.resolve(this.setAttributes('phone_number', value, userPoolId));
-    }
-
-    /**
      * @async
      *
      * @summary Get the user birthdate
@@ -169,17 +152,6 @@ export class AuthenticatedUser {
     }
 
     /**
-         * 
-         * @summary Method for setting user's birthdate
-         *
-         * @param value The value to apply to the attribute
-         * @param userPoolId Congito user pool id
-         */
-    public async setBirthdate(value: string, userPoolId: string): Promise<void> {
-        return Promise.resolve(this.setAttributes('birthdate', value, userPoolId));
-    }
-
-    /**
     * @async
     *
     * @summary Get the user address
@@ -188,17 +160,6 @@ export class AuthenticatedUser {
     */
     public async getAddress(): Promise<string> {
         return Promise.resolve(this._address);
-    }
-
-    /**
-         * 
-         * @summary Method for setting user's address
-         *
-         * @param value The value to apply to the attribute
-         * @param userPoolId Congito user pool id
-         */
-    public async setAddress(value: string, userPoolId: string): Promise<void> {
-        return Promise.resolve(this.setAttributes('address', value, userPoolId));
     }
 
     /**
