@@ -81,8 +81,8 @@ export class AuthenticatedUser {
      * @param birthdate The value of birthdate attribute to change
      * @param address The value of address attribute to change
      */
-    public async setAttributes(token: string, name: string, familyName: string, phoneNumber: string, birthdate: string, address: string): Promise<void> {
-        await this._provider.updateUserAttributes({
+    public async setAttributes(token: string, name: string, familyName: string, phoneNumber: string, birthdate: string, address: string) {
+        return this._provider.updateUserAttributes({
             AccessToken: token,
             UserAttributes: [
                 {
@@ -117,14 +117,13 @@ export class AuthenticatedUser {
      * @param oldPassword password to change
      * @param newPassword password to apply
      */
-    public async changePassword(token: string, oldPassword: string, newPassword: string): Promise<void> {
+    public async changePassword(token: string, oldPassword: string, newPassword: string) {
         await this._provider.changePassword({
             AccessToken: token,
             PreviousPassword: oldPassword,
             ProposedPassword: newPassword
         }).promise();
     }
-
     /**
      * @async
      *
