@@ -87,23 +87,23 @@ export class AuthenticatedUser {
             UserAttributes: [
                 {
                     Name: 'name',
-                    Value: name === '' ? name : this._name
+                    Value: name === '' ? this._name : name
                 },
                 {
                     Name: 'family_name',
-                    Value: familyName === '' ? familyName : this._familyName
+                    Value: familyName === '' ? this._familyName : familyName
                 },
                 {
                     Name: 'phone_number',
-                    Value: phoneNumber === '' ? phoneNumber : this._phoneNumber
+                    Value: phoneNumber === '' ? this._phoneNumber : phoneNumber
                 },
                 {
                     Name: 'birthdate',
-                    Value: birthdate === '' ? birthdate : this._birthDate
+                    Value: birthdate === '' ? this._birthDate : birthdate
                 },
                 {
                     Name: 'address',
-                    Value: address === '' ? address : this._address
+                    Value: address === '' ? this._address : address
                 }
             ],
         }).promise();
