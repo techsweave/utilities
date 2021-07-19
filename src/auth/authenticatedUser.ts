@@ -110,6 +110,22 @@ export class AuthenticatedUser {
     }
 
     /**
+     * 
+     * @summary async function to change the user's password
+     * 
+     * @param token accessToken of the user
+     * @param oldPassword password to change
+     * @param newPassword password to apply
+     */
+    public async changePassword(token: string, oldPassword: string, newPassword: string): Promise<void> {
+        await this._provider.changePassword({
+            AccessToken: token,
+            PreviousPassword: oldPassword,
+            ProposedPassword: newPassword
+        }).promise();
+    }
+
+    /**
      * @async
      *
      * @summary Get the user name
