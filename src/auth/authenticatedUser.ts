@@ -74,21 +74,55 @@ export class AuthenticatedUser {
      * 
      * @summary Private method for setting attributes
      * 
-     * @param name The attribute name to change
-     * @param value The value to apply to the attribute
-     * @param userPoolId Congito user pool id
+     * @param token The accessToken of the user
+     * @param name The value of name attribute to change
+     * @param familyName The value of familyName attribute to change
+     * @param phoneNumber The value of phoneNumber attribute to change
+     * @param birthdate The value of birthdate attribute to change
+     * @param address The value of address attribute to change
      */
-    private setAttributes(name: string, value: string, userPoolId: string) {
-        this._provider.adminUpdateUserAttributes({
+    public async setAttributes(token: string, name: string, familyName: string, phoneNumber: string, birthdate: string, address: string): Promise<void> {
+        await this._provider.updateUserAttributes({
+            AccessToken: token,
             UserAttributes: [
                 {
-                    Name: name,
-                    Value: value
+                    Name: 'name',
+                    Value: name === '' ? name : this._name
+                },
+                {
+                    Name: 'family_name',
+                    Value: familyName === '' ? familyName : this._familyName
+                },
+                {
+                    Name: 'phone_number',
+                    Value: phoneNumber === '' ? phoneNumber : this._phoneNumber
+                },
+                {
+                    Name: 'birthdate',
+                    Value: birthdate === '' ? birthdate : this._birthDate
+                },
+                {
+                    Name: 'address',
+                    Value: address === '' ? address : this._address
                 }
             ],
-            UserPoolId: userPoolId,
-            Username: this._userId
-        });
+        }).promise();
+    }
+
+    /**
+     * 
+     * @summary async function to change the user's password
+     * 
+     * @param token accessToken of the user
+     * @param oldPassword password to change
+     * @param newPassword password to apply
+     */
+    public async changePassword(token: string, oldPassword: string, newPassword: string): Promise<void> {
+        await this._provider.changePassword({
+            AccessToken: token,
+            PreviousPassword: oldPassword,
+            ProposedPassword: newPassword
+        }).promise();
     }
 
     /**
@@ -102,16 +136,6 @@ export class AuthenticatedUser {
         return Promise.resolve(this._name);
     }
 
-    /**
-     * 
-     * @summary Method for setting user's name
-     *
-     * @param value The value to apply to the attribute
-     * @param userPoolId Congito user pool id
-     */
-    public async setName(value: string, userPoolId: string): Promise<void> {
-        return Promise.resolve(this.setAttributes('name', value, userPoolId));
-    }
 
     /**
      * @async
@@ -122,17 +146,6 @@ export class AuthenticatedUser {
      */
     public async getFamilyName(): Promise<string> {
         return Promise.resolve(this._familyName);
-    }
-
-    /**
-     * 
-     * @summary Method for setting user's family name
-     *
-     * @param value The value to apply to the attribute
-     * @param userPoolId Congito user pool id
-     */
-    public async setFamilyName(value: string, userPoolId: string): Promise<void> {
-        return Promise.resolve(this.setAttributes('family_name', value, userPoolId));
     }
 
     /**
@@ -147,17 +160,6 @@ export class AuthenticatedUser {
     }
 
     /**
-         * 
-         * @summary Method for setting user's telephone number
-         *
-         * @param value The value to apply to the attribute
-         * @param userPoolId Congito user pool id
-         */
-    public async setPhoneNumber(value: string, userPoolId: string): Promise<void> {
-        return Promise.resolve(this.setAttributes('phone_number', value, userPoolId));
-    }
-
-    /**
      * @async
      *
      * @summary Get the user birthdate
@@ -169,17 +171,6 @@ export class AuthenticatedUser {
     }
 
     /**
-         * 
-         * @summary Method for setting user's birthdate
-         *
-         * @param value The value to apply to the attribute
-         * @param userPoolId Congito user pool id
-         */
-    public async setBirthdate(value: string, userPoolId: string): Promise<void> {
-        return Promise.resolve(this.setAttributes('birthdate', value, userPoolId));
-    }
-
-    /**
     * @async
     *
     * @summary Get the user address
@@ -188,17 +179,6 @@ export class AuthenticatedUser {
     */
     public async getAddress(): Promise<string> {
         return Promise.resolve(this._address);
-    }
-
-    /**
-         * 
-         * @summary Method for setting user's address
-         *
-         * @param value The value to apply to the attribute
-         * @param userPoolId Congito user pool id
-         */
-    public async setAddress(value: string, userPoolId: string): Promise<void> {
-        return Promise.resolve(this.setAttributes('address', value, userPoolId));
     }
 
     /**
