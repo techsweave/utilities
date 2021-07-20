@@ -118,7 +118,7 @@ export class AuthenticatedUser {
      * @param newPassword password to apply
      */
     public async changePassword(token: string, oldPassword: string, newPassword: string) {
-        await this._provider.changePassword({
+        return this._provider.changePassword({
             AccessToken: token,
             PreviousPassword: oldPassword,
             ProposedPassword: newPassword
