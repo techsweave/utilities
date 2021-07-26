@@ -51,7 +51,15 @@ export class Products extends Service implements IProducts {
             filter,
         };
 
-        return Promise.resolve(await super.requestAsync(finalUrl, method, body));
+        const res = await super.requestAsync(finalUrl, method, body);
+        //: IMultipleDataBody<IProduct> | IProduct
+        if (!res.data)
+            return Promise.resolve({
+                count: 1,
+                data: [res as IProduct]
+            });
+
+        return Promise.resolve(res as IMultipleDataBody<IProduct>);
     }
 
     /**
