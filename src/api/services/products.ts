@@ -1,8 +1,8 @@
 import { Service } from './service';
-import { ConditionExpression } from '@aws/dynamodb-expressions';
 import { IMultipleDataBody } from '../models/lambdaBody';
 import { INewProduct, IProduct } from '../models/database/products';
 import { IProducts } from '../models/services';
+import { CustomConditionExpression } from '../models/customConditionExpression';
 
 /**
  * @summary Products service
@@ -36,7 +36,7 @@ export class Products extends Service implements IProducts {
         startKey?: string,
         pageSize?: number,
         indexName?: string,
-        filter?: ConditionExpression,
+        filter?: CustomConditionExpression,
     ): Promise<IMultipleDataBody<IProduct>> {
         const finalUrl = this._finalUrl.concat('/filter');
         const method = 'POST';
