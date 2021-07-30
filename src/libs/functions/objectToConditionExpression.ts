@@ -1,4 +1,4 @@
-import { ConditionExpression } from '@aws/dynamodb-expressions';
+import { ConditionExpression, FunctionExpression } from '@aws/dynamodb-expressions';
 
 // For more documentation, see:
 // https://www.npmjs.com/package/@aws/dynamodb-expressions
@@ -91,7 +91,13 @@ export const objectToConditionExpression = async (data: any): Promise<ConditionE
             conditions: await Promise.all(childTasks) // Parallel Async!
         };
         break;
-
+    case 'Contains':
+        s = new FunctionExpression(
+            'Contains',
+            data.subject,
+            data.object
+        );
+        break;
 
     default:
         throw new Error('Syntax Error!');
