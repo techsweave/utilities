@@ -42,6 +42,8 @@ export class Categories extends Service implements ICategories {
         limit: number,
         startKey?: string,
         pageSize?: number,
+        indexName?: string,
+        filter?: ConditionExpression,
     ): Promise<IMultipleDataBody<ICategory>> {
         const finalUrl = this._finalUrl.concat('/filter');
         const method = 'POST';
@@ -51,7 +53,9 @@ export class Categories extends Service implements ICategories {
             startKey: startKey ? {
                 id: startKey,
             } : undefined,
-            pageSize
+            pageSize,
+            indexName,
+            filter,
         };
 
         return Promise.resolve(await super.requestAsync(finalUrl, method, body));
